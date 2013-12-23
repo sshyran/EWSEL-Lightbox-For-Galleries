@@ -96,7 +96,7 @@ class LightboxForGalleries {
 	}
 
 
-	// Make the thumbnails link to the fullsize image rather than a Page with the medium sized image
+	// Make the thumbnails link to the 'large' image rather than a Page with the medium sized image
 	function attachment_link( $link, $id ) {
 		// The lightbox doesn't function inside feeds obviously, so don't modify anything
 		if ( is_feed() || is_admin() )
@@ -105,7 +105,7 @@ class LightboxForGalleries {
 		$post = get_post( $id );
 
 		if ( 'image/' == substr( $post->post_mime_type, 0, 6 ) )
-			return wp_get_attachment_url( $id );
+			return wp_get_attachment_image_src( $id, "large" )[0];
 		else
 			return $link;
 	}
